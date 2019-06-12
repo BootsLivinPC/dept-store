@@ -16,7 +16,7 @@ class DeptView extends React.Component {
 
   render() {
     const { title, description, hours, email, phone,  } = this.state.department;
-    
+    // const { ...department } = this.state;
 
     return (
       <div>

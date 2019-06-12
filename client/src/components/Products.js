@@ -3,11 +3,14 @@ import { Card, Header, } from "semantic-ui-react";
 import axios from "axios";
 
 class Products extends React.Component {
-  state = { department: {}, products: [], };
+  state = { department: {}, products: [
+    {id: 1, title: "HardCode test", price: "6.00", category: "test", }
+  ], };
 
   componentDidMount() {
    axios.get(`/api/department/${this.props.id}/products`)
    .then( res => {
+    debugger
   this.setState({ products: res.data, })
    })
   }

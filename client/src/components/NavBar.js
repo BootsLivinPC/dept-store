@@ -19,6 +19,11 @@ const Navbar = () => (
         Department
       </Menu.Item>
     </Link>
+    <Link to="/department/:department.id/products">
+      <Menu.Item>
+        Products
+      </Menu.Item>
+    </Link>
   </Menu>
 )
 

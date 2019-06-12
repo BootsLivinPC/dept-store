@@ -4,7 +4,7 @@ class Api::ProductsController < ApplicationController
   
   def index
     # not sure if this is correct
-    render json: @deparment.products
+    render json: @dept.product.all
   end
 
   def show
@@ -12,7 +12,7 @@ class Api::ProductsController < ApplicationController
   end
 
   def create
-    product = Product.new(product_params)
+    product = @dept.product.new(product_params)
     if product.save
       render json: product
     else
@@ -33,7 +33,7 @@ class Api::ProductsController < ApplicationController
 
   private
   def set_department
-    @department = Department.find(params[:department_id])
+    @dept = Department.find(params[:department_id])
   end
 
   def set_product
