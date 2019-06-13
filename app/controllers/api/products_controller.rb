@@ -4,7 +4,7 @@ class Api::ProductsController < ApplicationController
   
   def index
     # not sure if this is correct
-    render json: @dept.product.all
+    render json: @dept.products.all
   end
 
   def show
@@ -12,11 +12,11 @@ class Api::ProductsController < ApplicationController
   end
 
   def create
-    product = @dept.product.new(product_params)
+    products = @dept.products.new(product_params)
     if product.save
-      render json: product
+      render json: products
     else
-      render json: product.errors, status: 422
+      render json: products.errors, status: 422
     end
   end
 
@@ -42,4 +42,5 @@ class Api::ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:title, :description, :category, :price )
+end
 end

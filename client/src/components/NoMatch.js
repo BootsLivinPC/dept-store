@@ -1,14 +1,16 @@
 import React from 'react';
 import { Link, } from "react-router-dom";
-import { Button, Header, } from "semantic-ui-react";
+import HeaderText from '../styles/HeaderText'
+import StyledButton from '../styles/StyledButton'
+
 
 const NoMatch = () => (
   <div style={styles.container}>
-    <Header as="h1" style={styles.header}>Oops!</Header>
-    <Header as="h1" style={styles.header}>Nothing to see here.</Header>
-    <Header as="h3">YOU FOUND A BROKEN LINK.</Header>
+    <HeaderText fSize="lrg" >Oops!</HeaderText>
+    <HeaderText fSize="med" >Nothing to see here.</HeaderText>
+    <HeaderText fSize="sml">YOU FOUND A BROKEN LINK.</HeaderText>
     <Link to="/">
-      <Button color="black">Home</Button>
+      <StyledButton>Home</StyledButton>
     </Link>
   </div>
 )

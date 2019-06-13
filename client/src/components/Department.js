@@ -1,12 +1,14 @@
 import React from "react";
-import { Card, Header, Button } from "semantic-ui-react";
+import { Card, Button, } from "semantic-ui-react";
 import axios from 'axios'
 import { Link, } from "react-router-dom"
-
+import HeaderText from '../styles/HeaderText'
+import StyledButton from '../styles/StyledButton'
+import StyledCard from '../styles/StyledCard'
 
 
 class Departments extends React.Component {
-  state = { departments: [], };
+  state = { departments: [],  };
 
   componentDidMount() {
    axios.get("/api/departments")
@@ -16,9 +18,9 @@ class Departments extends React.Component {
   }
 
   deleteDept = (id) => {
+    console.log(id)
     axios.delete(`/api/departments/${id}`)
     .then( res => {
-      debugger
       const { departments, } = this.state
       this.setState({ departments: departments.filter(t => t.id !== id ), })
     })
@@ -28,16 +30,15 @@ class Departments extends React.Component {
       
     }
 
-  renderDepartments = (editDept, deleteDept, id) => {
+  renderDepartments = (id) => {
     const { departments, } = this.state;
-    
     if (departments.length <= 0)
       return <h2>No departments</h2>
     return departments.map( department => (
 
-      <Card key={department.id}>
+      <StyledCard key={department.id}>
         <Card.Content>
-          <Card.Header>{ department.title }</Card.Header>
+          <HeaderText>{ department.title }</HeaderText>
           <Card.Meta>{ department.department }</Card.Meta>
           <Card.Description>
             { department.description }
@@ -47,30 +48,30 @@ class Departments extends React.Component {
          <Button size="tiny" as={Link} to={`/department/${department.id}`} color='blue'>
            View
          </Button>
-         <Button size="tiny" onClick={() => deleteDept(id)} color='red'>
+         <Button size="tiny" onClick={() => this.deleteDept(id)} color='red'>
            Destroy
          </Button>
-         <Button size="tiny" onClick={() => editDept(id)} color='green'>
+         <Button size="tiny" onClick={() => this.editDept(id)} color='green'>
            Edit
          </Button>
         </Card.Content>
-      </Card>
+      </StyledCard>
     ))
   }
 
   render() {
     return (
       <div>
-        <Header as="h1">Departments</Header>
+        <HeaderText size="lrg">Departments</HeaderText>
         <br />
-        <Button as={Link} color="blue" to="/department/new">
-         Add Department
-        </Button>
-        <br/>
-        <br/>
         <Card.Group>
           { this.renderDepartments() }
         </Card.Group>
+        <br/>
+        <br/>
+        <StyledButton as={Link} to="/department/new">
+         Add Department
+        </StyledButton>
       </div>
     )
   }

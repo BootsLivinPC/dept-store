@@ -1,6 +1,7 @@
 import React from 'react';
-import { Form, Header, } from "semantic-ui-react";
+import { Form, } from "semantic-ui-react";
 import axios from 'axios';
+import HeaderText from '../styles/HeaderText'
 
 class DeptForm extends React.Component {
   defaultValues = { title: "", phone: "", description: "", hours: "", email: "", };
@@ -26,7 +27,7 @@ class DeptForm extends React.Component {
 
     return (
       <div>
-        <Header as="h1">New Product</Header>
+        <HeaderText fsize="lrg">New Product</HeaderText>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group widths="equal">
             <Form.Input

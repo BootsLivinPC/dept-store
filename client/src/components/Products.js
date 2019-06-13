@@ -1,27 +1,34 @@
 import React from "react";
-import { Card, Header, } from "semantic-ui-react";
+import {Link,} from "react-router-dom"
+import { Card, } from "semantic-ui-react";
 import axios from "axios";
+import HeaderText from "../styles/HeaderText"
+import StyledCard from "../styles/StyledCard"
+import StyledButton from "../styles/HeaderText"
+// import styled, { keyframes } from 'styled-components';
 
+//use hooks instead of class component
+//still can't figure out why cDM() doesnt have dept.id but
+//render does. 
 class Products extends React.Component {
-  state = { department: {}, products: [
-    {id: 1, title: "HardCode test", price: "6.00", category: "test", }
-  ], };
+  state = { products: [
+    {id:17, department_id: 1, title: "test", category: "test", price: 4.99 }
+  ], loading: false }
 
   componentDidMount() {
-   axios.get(`/api/department/${this.props.id}/products`)
+   axios.get(`/api/departments/${this.props.pId}/products`)
    .then( res => {
-    debugger
-  this.setState({ products: res.data, })
+      this.setState({ products: res.data, })
    })
   }
 
   renderProducts = () => {
-    const { products, } = this.state;
-
+    const { products } = this.state;
+    console.log(this.props.department.id)
     if (products.length <= 0)
       return <h2>No Products</h2>
     return products.map( product => (
-      <Card>
+      <StyledCard key={product.id}>
         <Card.Content>
           <Card.Header>{ product.title }</Card.Header>
           <Card.Meta>{ product.category }</Card.Meta>
@@ -29,14 +36,21 @@ class Products extends React.Component {
             { product.description }
           </Card.Description>
         </Card.Content>
-      </Card>
+        <Card.Content extra>
+        <StyledButton
+        as={Link} 
+        to={`/department/${this.props.department.id}/product/new`}>
+         Add Product
+        </StyledButton>
+        </Card.Content>
+      </StyledCard>
     ))
   }
 
   render() {
     return (
       <div>
-        <Header as="h1">Products</Header>
+        <HeaderText fSize="med">Products</HeaderText>
         <br />
         <Card.Group>
           { this.renderProducts() }

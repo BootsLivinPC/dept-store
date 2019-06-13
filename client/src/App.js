@@ -8,6 +8,7 @@ import NavBar from './components/NavBar'
 import DeptForm from './components/DeptForm'
 import DeptView from './components/DeptView'
 import Products from './components/Products'
+import ProdForm from './components/ProdForm'
 import {Container, } from 'semantic-ui-react'
 
 const App = () => (
@@ -19,6 +20,7 @@ const App = () => (
       <Route exact path="/about" component={About} />
       <Route exact path="/department" component={Department} />
       <Route exact path="/department/new" component={DeptForm} />
+      <Route exact path="/department/:department_id/product/new" component={ProdForm} />
       <Route exact path="/department/:id" component={DeptView} />
       <Route exact path="/department/:department.id/products" component={Products} />
       <Route component={NoMatch} />

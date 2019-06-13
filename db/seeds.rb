@@ -11,13 +11,13 @@ end
 puts "20 Departments Seeded"
 
 
-20.times do
+100.times do
   Product.create(
     department_id: Faker::Number.between(1, 20), 
-    title: Faker::Beer.name,
+    title: Faker::Commerce.product_name,
     category: Faker::Commerce::department,
     price: Faker::Commerce.price.to_f,
-    description: Faker::Movies::Lebowski.quote,
+    description: Faker::Quote.famous_last_words,
    
   )
 end

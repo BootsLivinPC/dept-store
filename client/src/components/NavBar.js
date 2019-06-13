@@ -2,8 +2,9 @@ import React from 'react';
 import { Link, } from 'react-router-dom';
 import { Menu, } from "semantic-ui-react";
 
+
 const Navbar = () => (
-  <Menu>
+  <Menu style={{fontFamily: "lobster"}}>
     <Link to="/">
       <Menu.Item>
         Home
@@ -26,5 +27,7 @@ const Navbar = () => (
     </Link>
   </Menu>
 )
+
+
 
 export default Navbar;

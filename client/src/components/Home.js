@@ -1,8 +1,10 @@
 import React from 'react';
-import { Header, } from "semantic-ui-react";
+
+import HeaderText from '../styles/HeaderText'
+
 
 const Home = () => (
-  <Header as="h1">Home</Header>
+  <HeaderText fSize="med">Home</HeaderText>
 )
 
 export default Home;

@@ -1,45 +1,58 @@
 import React from "react";
 import axios from "axios";
-import { Button, Header, } from "semantic-ui-react";
 import Products from "./Products"
+import HeaderText from "../styles/HeaderText"
+import StyledButton from '../styles/StyledButton'
 
 
 class DeptView extends React.Component {
-  state = { department: {}, };
+  state = { department: {}, products: [], };
 
   componentDidMount() {
     axios.get(`/api/departments/${this.props.match.params.id}`)
       .then( res => {
         this.setState({ department: res.data, });
       })
+
+    // axios.get(`/api/departments/${this.props.match.params.id}/products`)
+    //   .then( res => {
+    //     debugger
+    //      this.setState({ products: res.data, })
+    //   })
+    //   .catch( err => {
+    //     debugger
+    //   })
   }
 
   render() {
-    const { title, description, hours, email, phone,  } = this.state.department;
+    const { title, description, email, phone,  } = this.state.department;
     // const { ...department } = this.state;
 
     return (
       <div>
         <>
-          <Header as="h1">{ title }</Header>
-          <Header as="h3">{ description }</Header>
-          <Header as="h5" color="grey">{ hours }</Header>
-          <Header as="h5" color="grey">{ phone }</Header>
-          <Header as="h5" color="grey">{ email }</Header>
+          <HeaderText fSize="lrg">{ title }</HeaderText>
+          <HeaderText fSize="med">{ description }</HeaderText>
+          {/* <HeaderText fSize="sml">{ hours }</HeaderText> */}
+          <HeaderText fSize="sml">{ phone }</HeaderText>
+          <HeaderText fSize="sml">{ email }</HeaderText>
           
         </>
         <br />
-        <Products  id={this.state.department.id} />
+        <Products  pId={this.props.match.params.id} department={this.state.department} />
         <br />
-        <Button 
+        <StyledButton 
           color="black" 
           onClick={this.props.history.goBack}
           >
           Back
-        </Button>
+        </StyledButton>
       </div>
     )
   }
 }
+
+
+
 
 export default DeptView;
